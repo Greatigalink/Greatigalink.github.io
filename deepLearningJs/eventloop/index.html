@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="eventloop"><meta name="keywords" content="事件循环,EventLoop,运行机制"><meta name="author" content="Great tigalink"><meta name="copyright" content="Great tigalink"><title>eventloop | 学习笔记</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?c74f5b689637f77db7c8feff64beb26f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '5.2.0'
+} </script><meta name="generator" content="Hexo 5.2.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81JavaScript-%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">一、JavaScript 是单线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%8F%8A%E5%85%B6%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">二、异步任务及其回调函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97"><span class="toc-number">3.1.</span> <span class="toc-text">(1) 任务队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0-callback"><span class="toc-number">3.2.</span> <span class="toc-text">(2) 回调函数 (callback)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%BE%AE%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.3.</span> <span class="toc-text">(3) 宏任务和微任务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%AE%8F%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.3.1.</span> <span class="toc-text">常见宏任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%BE%AE%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.3.2.</span> <span class="toc-text">常见微任务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6-Event-Loop"><span class="toc-number">4.</span> <span class="toc-text">三、事件循环机制 (Event Loop)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2020-9-22-%E6%9B%B4%E6%96%B0"><span class="toc-number">5.</span> <span class="toc-text">2020&#x2F;9&#x2F;22 更新</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number"></span> <span class="toc-text">参考链接</span></a></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://www.tzwlink.xyz/static/great.png"></div><div class="author-info__name text-center">Great tigalink</div><div class="author-info__description text-center">努力向前的前端学习笔记</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">40</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">46</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">11</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1604079808623&amp;di=20b74ccc62db9a08aad7b3fc31cab6cc&amp;imgtype=0&amp;src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-12-26%2F5a41ea670152d.jpg%3Fdown)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">学习笔记</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">主页</a><a class="site-page" href="/archives">文章总览</a><a class="site-page" href="/guide">目录</a><a class="site-page" href="/tags">小标签</a><a class="site-page" href="/categories">归档</a><a class="site-page" href="/about">关于</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">eventloop</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-09-22</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/JavaScript/">JavaScript</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>在初次入门学习和使用 JavaScript 的过程中，相信遇到过许多程序执行顺序及结果与预期不一致的问题，在查阅资料的过程中了解到原来是程序的执行有同步与异步之分；与此同时也会看到许多有关概念，例如回调函数、执行栈、任务队列、事件循环机制(Event Loop)、宏任务、微任务、Promise(ES6)等等。此时对于一个刚入门不久的小白来说，要理解消化这些概念真的不容易。对于入门不久的我来说也一样，所以写一篇博客记录一下，有关 JavaScript 的运行机制，以及上述的这些概念为什么会出现，又解决了什么问题。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="一、JavaScript-是单线程"><a href="#一、JavaScript-是单线程" class="headerlink" title="一、JavaScript 是单线程"></a>一、JavaScript 是单线程</h2><blockquote>
+<p>我们知道多线程是可以并行执行程序的，能提高程序运行效率。但是 JS 是一门单线程语言，同一时间内做一件事。</p>
+</blockquote>
+<blockquote>
+<p>最初作为服务于浏览器的脚本语言，很多时候都是在与用户交互，这个过程涉及了许多 DOM 的操作，倘若使用多线程，那么就容易出现几个线程同时操作一个 DOM 的问题，那么浏览器此时要以哪一个线程为主呢？这样一来无疑增加了复杂性，所以 JS 成为了单线程。虽然说多线程处理起来也很高效，但对于当时直接服务于浏览器用户的 JS 来说，尽可能避免过度复杂，能更简单的处理相对好点吧。</p>
+</blockquote>
+<h2 id="二、异步任务及其回调函数"><a href="#二、异步任务及其回调函数" class="headerlink" title="二、异步任务及其回调函数"></a>二、异步任务及其回调函数</h2><blockquote>
+<p>虽然单线程降低了复杂性，但是也有了新的问题。单线程是顺序执行程序，每一个任务要等待上一个任务执行完毕才执行，如果遇到执行时间太长或者出现了别的问题，那么就会一直卡在那，导致整个程序无法顺利执行完毕。为了解决问题，语言设计者希望在程序执行时，将一些耗时、有延迟的任务先挂起，让能快速执行完毕的任务先执行；按照这样的方式执行完整个程序后，在返回去执行那些被挂起的任务。因此有了同步任务与异步任务之分；在执行过程中，当前执行程序的线程称为<strong>主线程</strong>，同步任务直接在主线程立即执行，而那些异步任务，先给它挂在一边放着，等到主线程执行完了所有同步任务，再回来读取挂在一旁的异步任务，并且执行他们。</p>
+</blockquote>
+<h3 id="1-任务队列"><a href="#1-任务队列" class="headerlink" title="(1) 任务队列"></a>(1) 任务队列</h3><blockquote>
+<p>任务队列是一系列事件组成的一个队列，也就是上面说到的异步任务挂起的地方。程序执行时会将定义的异步任务送入任务队列，或者用户点击鼠标触发的异步任务送入队列。等待主线程来执行它们。例如常见的各种事件（鼠标点击、键盘敲击、滚动等等）、又或者是 Ajax 那样等待响应的异步任务。</p>
+</blockquote>
+<blockquote>
+<p>实际上，任务队列不止一种，因为处理的异步任务种类可能不同</p>
+</blockquote>
+<h3 id="2-回调函数-callback"><a href="#2-回调函数-callback" class="headerlink" title="(2) 回调函数 (callback)"></a>(2) 回调函数 (callback)</h3><blockquote>
+<p>回调函数往往就是异步任务所定义的代码。主线程执行完同步任务，就会回来开始读取任务队列中的异步任务并执行这些代码，同时也称为回调函数。</p>
+</blockquote>
+<h3 id="3-宏任务和微任务"><a href="#3-宏任务和微任务" class="headerlink" title="(3) 宏任务和微任务"></a>(3) 宏任务和微任务</h3><blockquote>
+<p>异步任务又可以看为两种，通常由宿主环境(浏览器、node)提供的为宏任务，由语言标准提供的为微任务。 JavaScript 可能会在不同的宿主环境下运行，所以宏任务来自于宿主环境，而微任务作为语言标准，在任何环境下都可以使用。</p>
+</blockquote>
+<h4 id="常见宏任务"><a href="#常见宏任务" class="headerlink" title="常见宏任务"></a>常见宏任务</h4><ul>
+<li>setTimeout</li>
+<li>setInterval</li>
+<li>setImmediate (仅 node 提供)</li>
+<li>requestAnimationFrame (仅浏览器提供)</li>
+<li>各种交互 (鼠标点击、滚动等等)</li>
+<li>I/O</li>
+</ul>
+<h4 id="常见微任务"><a href="#常见微任务" class="headerlink" title="常见微任务"></a>常见微任务</h4><ul>
+<li>Promise.then catch finally</li>
+<li>MutationObserver (仅浏览器提供)</li>
+<li>process.nextTick (仅 node 提供)</li>
+</ul>
+<h2 id="三、事件循环机制-Event-Loop"><a href="#三、事件循环机制-Event-Loop" class="headerlink" title="三、事件循环机制 (Event Loop)"></a>三、事件循环机制 (Event Loop)</h2><blockquote>
+<p>主线程执行程序时会将定义的异步任务放入任务队列中，宏任务会放在宏任务队列，微任务放在微任务队列，当触发 UI 事件时，也会把相应任务放入队列。为了确保事件处理正常进行，主线程不阻塞。所以有了解决方案 Event Loop，事件循环线程是独立于主线程的，并且一直存在直到整个脚本环境被关闭。无论是主线程执行时添加的异步任务，还是 UI 交互触发后添加的异步任务，事件循环机制都会按一定规则循环读取并且执行。</p>
+</blockquote>
+<blockquote>
+<p>那么该循环机制如何运行呢？</p>
+</blockquote>
+<ul>
+<li><p>(1) 打开某个宿主环境时，主线程执行同步任务的所有代码，形成一个执行栈；把遇到的异步任务放入相应的队列里；同时一个独立于主线程的事件循环线程也被创建并一直存在。</p>
+</li>
+<li><p>(2) 当主线程执行完同步任务，会将该执行过程中添加的微任务全部执行完，之后由事件循环机制协调。</p>
+</li>
+<li><p>(3) 事件循环读取当前宏任务队列的一个宏任务，并放入执行栈中执行</p>
+</li>
+<li><p>(4) 在执行过程中遇到宏任务和微任务，按照相同的方式放入相应队列</p>
+</li>
+<li><p>(5) 该宏任务执行完毕后立即执行此次宏任务中所添加的所有微任务</p>
+</li>
+<li><p>(6) 回到第 (3) 步开始重复后面步骤。</p>
+</li>
+<li><p><strong>说那么多，看个例子</strong></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;1-1&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 1-1&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;1-2&#x27;</span>);</span><br><span class="line">  resolve();</span><br><span class="line">&#125;).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 1-2&#x27;</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;宏任务 1-1&#x27;</span>), <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;1-3&#x27;</span>);</span><br><span class="line"><span class="comment">//1-1</span></span><br><span class="line"><span class="comment">//1-2</span></span><br><span class="line"><span class="comment">//1-3</span></span><br><span class="line"><span class="comment">//微任务 1-1</span></span><br><span class="line"><span class="comment">//微任务 1-2</span></span><br><span class="line"><span class="comment">//宏任务 1-1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>主线程开始执行，形成一个执行栈</p>
+</li>
+<li><p>碰到第一个 console.log(‘1-1’)，并打印 <strong>-&gt; 1-1</strong></p>
+</li>
+<li><p>碰到第一个 Promise，已为成功状态，将其 then() 加到微任务中</p>
+</li>
+<li><p>碰到第二个 Promise，先执行其中的 console.log(‘1-2’)，打印 <strong>-&gt; 1-2</strong>，并将其 then() 放入微任务队列</p>
+</li>
+<li><p>碰到第一个宏任务，放入宏任务队列</p>
+</li>
+<li><p>碰到 console.log(‘1-3’)，打印 <strong>-&gt; 1-3</strong></p>
+</li>
+<li><p>主线程执行完所有同步任务，开始执行本次添加的所有微任务</p>
+</li>
+<li><p>读取微任务队列</p>
+</li>
+<li><p>遇到先进去的第一个 then() ，打印 <strong>-&gt; 微任务 1-1</strong> </p>
+</li>
+<li><p>遇到后进去的 then() 打印 <strong>-&gt; 微任务 1-2</strong></p>
+</li>
+<li><p>本次主线程任务完成，下面由事件循环机制来协调。开始读取宏任务队列</p>
+</li>
+<li><p>遇到第一个放入的宏任务 setTimeout()，将其丢到执行栈延时 100ms 执行，打印 <strong>-&gt; 宏任务 1-1</strong></p>
+</li>
+<li><p>第一次宏任务执行完毕，读取微任务队列，发现没有微任务。进入第二次循环</p>
+</li>
+<li><p>读取宏任务队列，发现没有宏任务。JS 执行栈开始摸鱼…</p>
+</li>
+</ul>
+<blockquote>
+<p>到这里其实会发现，微任务都会紧跟在当前执行栈执行同步任务后执行，而存好的宏任务被放在下次执行，好似重新开始一样。</p>
+</blockquote>
+<blockquote>
+<p>按个人总结来就是（不一定对），主线程的执行栈是专门用来执行代码的；当事件循环线程读取到一个宏任务时，将其放入执行栈执行，主线程会执行其中定义的同步任务，将遇到的宏任务和微任务存起来，在本次同步任务执行完之后立即执行微任务。而此次存好的宏任务又会按照相同的方式在下一次循环中进行。因为事件循环机制一次循环只读取执行一个宏任务。</p>
+</blockquote>
+<blockquote>
+<p>由此看来其实整个程序也可以看成是一个宏任务，而首次添加的宏任务和微任务是按照上面的方式一层层刨开，按照一次执行一个宏任务和里面所有微任务的规则进行</p>
+</blockquote>
+<ul>
+<li><strong>再看个例子说明宏任务是一次循环读取一次，并且会执行宏任务下所有微任务</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;开始执行主线程&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;0-1&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 0-1\n-----&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;<span class="comment">//宏任务 1</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;第一个宏任务&#x27;</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;宏任务 1-1&#x27;</span>);</span><br><span class="line">  <span class="built_in">Promise</span>.resolve().then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 1-1&#x27;</span>));</span><br><span class="line">  <span class="built_in">Promise</span>.resolve().then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 1-2\n-----&#x27;</span>));</span><br><span class="line"></span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;<span class="comment">//宏任务3</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;第三个宏任务&#x27;</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;宏任务 3-1&#x27;</span>)</span><br><span class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 3-1\n-----&#x27;</span>))</span><br><span class="line">  &#125;,<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">&#125;,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;<span class="comment">//宏任务2</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;第二个宏任务&#x27;</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;宏任务2-1&#x27;</span>);</span><br><span class="line">  <span class="built_in">Promise</span>.resolve().then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 2-1\n-----&#x27;</span>));</span><br><span class="line">&#125;,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;0-2&#x27;</span>);</span><br><span class="line"></span><br><span class="line">***************************</span><br><span class="line"></span><br><span class="line">执行结果</span><br><span class="line"></span><br><span class="line">开始执行主线程</span><br><span class="line"><span class="number">0</span>-<span class="number">1</span></span><br><span class="line"><span class="number">0</span>-<span class="number">2</span></span><br><span class="line">微任务 <span class="number">0</span>-<span class="number">1</span></span><br><span class="line">-----</span><br><span class="line">第一个宏任务</span><br><span class="line">宏任务 <span class="number">1</span>-<span class="number">1</span></span><br><span class="line">微任务 <span class="number">1</span>-<span class="number">1</span></span><br><span class="line">微任务 <span class="number">1</span>-<span class="number">2</span></span><br><span class="line">-----</span><br><span class="line">第二个宏任务</span><br><span class="line">宏任务 <span class="number">2</span>-<span class="number">1</span></span><br><span class="line">微任务 <span class="number">2</span>-<span class="number">1</span></span><br><span class="line">-----</span><br><span class="line">第三个宏任务</span><br><span class="line">宏任务 <span class="number">3</span>-<span class="number">1</span></span><br><span class="line">微任务 <span class="number">3</span>-<span class="number">1</span></span><br><span class="line">-----</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>开始执行主线程后，将 <strong>微任务 0-1 、 宏任务1 、 宏任务2</strong> 存入队列，并先打印其同步任务代码，又打印微任务代码</li>
+<li>开始第一次事件循环，读取宏任务1(第一个定时)，将 <strong>微任务 1-1 、微任务 1-2、和宏任务3</strong> 存入队列。打印方式如上一条。</li>
+<li>开始第二次事件循环，读取宏任务2(第二个定时)，将 <strong>微任务 2-1</strong> 存入队列，打印方式如上。</li>
+<li>开始第三次事件循环，读取宏任务队列中最后一个进去的宏任务3(宏任务1中定义的定时器)，将 <strong>微任务 3-1</strong> 存入队列，打印方式如上。</li>
+</ul>
+<blockquote>
+<p>大概流程图</p>
+</blockquote>
+<p><img src="//p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f577adefbe974222a3a68fc5124b0f97~tplv-k3u1fbpfcp-zoom-1.image" alt="流程图"></p>
+<blockquote>
+<p><strong>提示，虽然说是一次循环只读取一个宏任务，但是他没说要等当前宏任务执行完才进行下一次循环哦！！，事件循环读取到队列中的任务并且让它开始执行后，就可以开始下次循环，不需要等待</strong></p>
+</blockquote>
+<ul>
+<li><strong>下面改动的例子，留给自己做练习吧</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">  <span class="built_in">Promise</span>.resolve().then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="number">4</span>));</span><br><span class="line"></span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">5</span>);</span><br><span class="line">  &#125;,<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">&#125;,<span class="number">200</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">6</span>);</span><br><span class="line">  <span class="built_in">Promise</span>.resolve().then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="number">7</span>));</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">8</span>)</span><br><span class="line">  &#125;, <span class="number">300</span>);</span><br><span class="line">&#125;,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">9</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>自己在纸上写了一下，将代码在浏览器上运行之后对比，发现完全正确。你也可以自己写一下哦。</p>
+</blockquote>
+<h2 id="2020-9-22-更新"><a href="#2020-9-22-更新" class="headerlink" title="2020/9/22 更新"></a>2020/9/22 更新</h2><blockquote>
+<p>有一种情况，那就是 then() 之后接着 then() ，那么此时的顺序呢？</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;1-1&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 1-1&#x27;</span>)).then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 1-3&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;1-2&#x27;</span>);</span><br><span class="line">  resolve();</span><br><span class="line">&#125;).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 1-2&#x27;</span>)</span><br><span class="line">&#125;).then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;微任务 1-4&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;宏任务 1-1&#x27;</span>), <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1-1</span></span><br><span class="line"><span class="comment">//1-2</span></span><br><span class="line"><span class="comment">//1-3</span></span><br><span class="line"><span class="comment">//微任务 1-1</span></span><br><span class="line"><span class="comment">//微任务 1-2</span></span><br><span class="line"><span class="comment">//微任务 1-3</span></span><br><span class="line"><span class="comment">//微任务 1-4</span></span><br><span class="line"><span class="comment">//宏任务 1-1</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以看到他的运行顺序，说明在 then() 执行之后，如果后面还接着 then() 那么按照同样的方式添加到微任务队列，等到之前添加的第一层 then() 都执行完后，在到微任务队列里面读取后面添加的 then()，运行方式如上。并且只有当微任务队列为空时，事件循环机制才会进行到下一轮并读取新的宏任务。</p>
+</blockquote>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><blockquote>
+<p>阮一峰的网络日志<br><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">JavaScript 运行机制详解：再谈Event Loop</a></p>
+</blockquote>
+<blockquote>
+<p>知乎作者：tigerHee<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/78113300">js中的宏任务与微任务</a></p>
+</blockquote>
+<blockquote>
+<p>博客园作者：daisy,gogogo<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/daisygogogo/p/10116694.html">JavaScipt 中的事件循环 event loop，以及微任务和宏任务的概念</a></p>
+</blockquote>
+<blockquote>
+<p>国外作者写的一篇文章<br><a target="_blank" rel="noopener" href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/?utm_source=html5weekly">Tasks, microtasks, queues and schedules</a></p>
+</blockquote>
+<!-- ## **未完，后续文章记录异步编程的学习笔记...**
+
+## **第一次学习理解JS运行机制、同步异步的问题。如果文章中有理解错误的地方欢迎提出，我会及时改正，谢谢!** -->
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Great tigalink</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/deepLearningJs/eventloop/">http://example.com/deepLearningJs/eventloop/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">事件循环</a><a class="post-meta__tags" href="/tags/EventLoop/">EventLoop</a><a class="post-meta__tags" href="/tags/%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/">运行机制</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/es6/es6basic/"><i class="fa fa-chevron-left">  </i><span>es6basic</span></a></div><div class="next-post pull-right"><a href="/javaScript/json/"><span>json</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1604079808623&amp;di=20b74ccc62db9a08aad7b3fc31cab6cc&amp;imgtype=0&amp;src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-12-26%2F5a41ea670152d.jpg%3Fdown)"><div class="layout" id="footer"><div class="copyright">&copy;2020 By Great tigalink</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

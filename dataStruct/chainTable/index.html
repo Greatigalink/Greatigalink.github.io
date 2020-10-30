@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="线性表"><meta name="keywords" content="链表"><meta name="author" content="Great tigalink"><meta name="copyright" content="Great tigalink"><title>线性表 | 学习笔记</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?c74f5b689637f77db7c8feff64beb26f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '5.2.0'
+} </script><meta name="generator" content="Hexo 5.2.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.</span> <span class="toc-text">数组与字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95"><span class="toc-number">2.0.1.</span> <span class="toc-text">查找方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%96%B9%E6%B3%95"><span class="toc-number">2.0.2.</span> <span class="toc-text">插入方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E6%96%B9%E6%B3%95"><span class="toc-number">2.0.3.</span> <span class="toc-text">打印方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%B9%E6%B3%95"><span class="toc-number">2.0.4.</span> <span class="toc-text">删除方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-number">2.0.5.</span> <span class="toc-text">完整代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text">双向链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8"><span class="toc-number">2.2.</span> <span class="toc-text">循环链表</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://www.tzwlink.xyz/static/great.png"></div><div class="author-info__name text-center">Great tigalink</div><div class="author-info__description text-center">努力向前的前端学习笔记</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">40</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">46</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">11</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1599023328242&amp;di=64799ed6729f4cf8b277c2e7c2faf5a0&amp;imgtype=0&amp;src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201310%2F29%2F155410lzccq8i7p2hz2c7g.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">学习笔记</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">主页</a><a class="site-page" href="/archives">文章总览</a><a class="site-page" href="/guide">目录</a><a class="site-page" href="/tags">小标签</a><a class="site-page" href="/categories">归档</a><a class="site-page" href="/about">关于</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">线性表</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-09-01</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>掌握基本的数据结构与算法，并且能应用到实际中，应该是每一个计算机语言学习者的必备技能，前端的学习也一样。</p>
+</blockquote>
+<blockquote>
+<p>既然是前端，那就用 JavaScript 来进行学习</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="数组与字符串"><a href="#数组与字符串" class="headerlink" title="数组与字符串"></a>数组与字符串</h1><blockquote>
+<p>这个 JavaScript 原生就支持的，数组常见 Array 实例，字符串常见于 String 包装类型。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arry = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];  </span><br><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;Great&#x27;</span>;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">const</span> ary1 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="string">&#x27;er&#x27;</span>,&#123; <span class="attr">key</span>: <span class="number">1</span> &#125;);  </span><br><span class="line"><span class="keyword">const</span> str1 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;yes&#x27;</span>);  </span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt; 数组和字符串可以说是应用最多的了。学习的时候，除了基本的赋值、操作方法，还应该掌握位置方法。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* 对于数组，还应该掌握JS原生支持的迭代方法；以及几大数组排序算法、数组去重</span></span><br><span class="line"><span class="string">* 对于字符串，要掌握拼接、查找；除此之外，也要灵活应用正则表达式</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 链表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt; JavaScript 里面没有对链表的原生支持，需要进行封装。首先要知道链表的结构与特性。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* 每一个节点应该包括数据元素和指针。</span></span><br><span class="line"><span class="string">* 数据元素存储了该节点携带的数据，指针用来指向下一个节点。</span></span><br><span class="line"><span class="string">* 有一个头节点来作为链表的开始</span></span><br><span class="line"><span class="string">* 链表的最后一个节点的指针指向为 null，代表结束</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt; 在 JS 里面，我们可以利用将其封装，用来产生节点，把通用方法定义为原型。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 单链表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt; 采用原型构造函数组合模式，将通用方法封装为原型，每一个实例对象用构造函数创建。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### 链表及链表节点构造函数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line">/链表节点构造函数  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ListNode</span>(<span class="params">next = <span class="literal">null</span>, date = <span class="literal">null</span></span>) </span>&#123;  </span><br><span class="line"> <span class="built_in">this</span>.next = next;  </span><br><span class="line"> <span class="built_in">this</span>.date = date;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//链表构造函数  </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">LList</span>(<span class="params"></span>) </span>&#123;   </span><br><span class="line"> <span class="built_in">this</span>.head = <span class="keyword">new</span> ListNode();  </span><br><span class="line"> <span class="built_in">this</span>.length = <span class="number">0</span>;<span class="comment">//链表长度  </span></span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<h3 id="查找方法"><a href="#查找方法" class="headerlink" title="查找方法"></a>查找方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LList.prototype.findNode = <span class="function"><span class="keyword">function</span>(<span class="params">date</span>) </span>&#123;  </span><br><span class="line"> <span class="keyword">let</span> p = <span class="built_in">this</span>.head;  </span><br><span class="line"> <span class="function"><span class="title">while</span>(<span class="params">p &amp;&amp; p.date != date</span>)</span> &#123;  </span><br><span class="line"> p = p.next;  </span><br><span class="line"> &#125;  </span><br><span class="line"> <span class="keyword">return</span> p;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<h3 id="插入方法"><a href="#插入方法" class="headerlink" title="插入方法"></a>插入方法</h3><ul>
+<li><strong>头插法</strong></li>
+</ul>
+<blockquote>
+<p>始终让头结点指向新的节点，插入的顺序是颠倒的</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LList.prototype.addListByHead = <span class="function"><span class="keyword">function</span>(<span class="params">date</span>) </span>&#123;<span class="comment">//封装头插法  </span></span><br><span class="line"> <span class="keyword">let</span> temp = <span class="built_in">this</span>.head.next;  </span><br><span class="line"> <span class="keyword">let</span> node = <span class="keyword">new</span> ListNode(<span class="literal">null</span>, date);  </span><br><span class="line"> <span class="built_in">this</span>.head.next = node;  </span><br><span class="line"> node.next = temp;  </span><br><span class="line"> <span class="built_in">this</span>.length ++;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>尾插法</strong></li>
+</ul>
+<blockquote>
+<p>始终插入在最后一个节点后面，也是顺序添加的方法</p>
+</blockquote>
+<pre><code class="javascript">LList.prototype.insert = function(newDate, lastNode) &#123;//封装头插法  
+ let temp = lastNode.next;  
+ let node = new ListNode(null, newDate);  
+ lastNode.next = node;  
+ node.next = temp;  
+ this.length ++;  
+&#125;  </code></pre>
+<ul>
+<li><strong>指定位置插入</strong></li>
+</ul>
+<blockquote>
+<p>先找到指定节点，接着在指定节点后添加</p>
+</blockquote>
+<pre><code class="javascript">LList.prototype.insertLocal = function(newDate, date) &#123;  
+ let preNode = this.findNode(date);  
+ if(preNode) &#123;  
+ let temp = preNode.next;  
+ let node = new ListNode(null, newDate);  
+ preNode.next = node;  
+ node.next = temp;  
+ this.length ++;  
+ &#125; else &#123;  
+ return false;  
+ &#125;  
+&#125; </code></pre>
+<h3 id="打印方法"><a href="#打印方法" class="headerlink" title="打印方法"></a>打印方法</h3><pre><code class="javascript">LList.prototype.display = function() &#123;//封装打印链表  
+ let p = this.head.next;  
+ while(p) &#123;  
+ console.log(p.date);  
+ p = p.next;  
+ &#125;  
+&#125;</code></pre>
+<h3 id="删除方法"><a href="#删除方法" class="headerlink" title="删除方法"></a><a href="#%E5%88%A0%E9%99%A4%E6%96%B9%E6%B3%95" title="删除方法"></a>删除方法</h3><blockquote>
+<p>基本思路，找到删除节点的前驱节点，让前驱节点指向删除节点的下一个节点。删除节点失去引用，JS垃圾清除会回收它</p>
+</blockquote>
+<pre><code class="javascript">LList.prototype.remove = function(date) &#123;  
+ let p = this.head, pre;  
+ while(p &amp;&amp; p.date != date) &#123;  
+ pre = p;  
+ p = p.next;  
+ &#125;  
+ if(p) &#123;  
+ pre.next = p.next;  
+ this.length --;  
+ &#125; else &#123;  
+ return false;  
+ &#125;  
+&#125; </code></pre>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><pre><code class="javascript">//链表节点构造函数  
+function ListNode(next = null, date = null) &#123;  
+ this.next = next;  
+ this.date = date;  
+&#125;  
+
+//链表构造函数  
+function LList() &#123;   
+ this.head = new ListNode();  
+ this.length = 0;//链表长度  
+
+ LList.prototype.findNode = function(date) &#123;//查找指定节点  
+ let p = this.head;  
+ while(p &amp;&amp; p.date != date) &#123;  
+ p = p.next;  
+ &#125;  
+ return p;  
+ &#125;  
+
+ LList.prototype.insert = function(newDate, lastNode) &#123;//封装尾插法  
+ let temp = lastNode.next;  
+ let node = new ListNode(null, newDate);  
+ lastNode.next = node;  
+ node.next = temp;  
+ this.length ++;  
+ return node;  
+ &#125;  
+
+ LList.prototype.addListByHead = function(date) &#123;//封装头插法  
+ let temp = this.head.next;  
+ let node = new ListNode(null, date);  
+ this.head.next = node;  
+ node.next = temp;  
+ this.length ++;  
+ &#125;  
+
+ LList.prototype.insertLocal = function(newDate, date) &#123;//指定位置插入法  
+ let preNode = this.findNode(date);  
+ if(preNode) &#123;  
+ let temp = preNode.next;  
+ let node = new ListNode(null, newDate);  
+ preNode.next = node;  
+ node.next = temp;  
+ this.length ++;  
+ &#125; else &#123;  
+ return false;  
+ &#125;  
+ &#125;   
+
+ LList.prototype.remove = function(date) &#123;//移出方法  
+ let p = this.head, pre;  
+ while(p &amp;&amp; p.date != date) &#123;  
+ pre = p;  
+ p = p.next;  
+ &#125;  
+ if(p) &#123;  
+ pre.next = p.next;  
+ this.length --;  
+ &#125; else &#123;  
+ return false;  
+ &#125;  
+ &#125;  
+
+ LList.prototype.display = function() &#123;//封装打印链表  
+ let p = this.head.next;  
+ while(p) &#123;  
+ console.log(p.date);  
+ p = p.next;  
+ &#125;  
+ &#125;  
+&#125;  
+
+
+let list = new LList();  
+
+let lastNode =  list.insert(&#39;First&#39;, list.head);  
+lastNode = list.insert(&#39;Second&#39;, lastNode);  
+lastNode = list.insert(&#39;Three&#39;, lastNode);  
+lastNode = list.insert(&#39;Four&#39;, lastNode);  
+
+list.remove(&#39;Three&#39;);  
+
+list.display();  </code></pre>
+<h2 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h2><blockquote>
+<p>在单链表的基础上，添加一个指向前一个节点的指针，其他操作与单链表类似</p>
+</blockquote>
+<h2 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h2><blockquote>
+<p>与单链表基本一样，不同于循环链表最后一个节点始终指向头结点</p>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Great tigalink</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/dataStruct/chainTable/">http://example.com/dataStruct/chainTable/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%93%BE%E8%A1%A8/">链表</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/dataStruct/tree/"><i class="fa fa-chevron-left">  </i><span>树和二叉树</span></a></div><div class="next-post pull-right"><a href="/Frame-level-thinking/PubSub/"><span>发布-订阅模式</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1599023328242&amp;di=64799ed6729f4cf8b277c2e7c2faf5a0&amp;imgtype=0&amp;src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201310%2F29%2F155410lzccq8i7p2hz2c7g.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2020 By Great tigalink</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
