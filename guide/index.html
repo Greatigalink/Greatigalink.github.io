@@ -1,252 +1,108 @@
-.recent-post-item {
-  margin: 1.6rem 0 2rem;
-}
-.recent-post-item .content {
-  margin-top: 0.5rem;
-}
-.recent-post-item .content p {
-  word-break: break-word;
-}
-.recent-post-item .content iframe {
-  width: $content-width;
-  height: $iframe-height;
-}
-.recent-post-item .article-type {
-  margin-left: 0.3rem;
-  color: $grey;
-}
-.recent-post-item .article-meta {
-  color: $grey;
-}
-.recent-post-item .article-meta .sticky {
-  color: $theme-button-hover-color;
-}
-.recent-post-item .article-meta i {
-  margin: 0 0.2rem 0 0.3rem;
-}
-.recent-post-item .article-meta__separator {
-  margin-left: 0.3rem;
-}
-.recent-post-item .article-meta .fa-angle-right,
-.recent-post-item .article-meta__link {
-  margin: 0 0 0 0.3rem;
-}
-.recent-post-item time {
-  color: $grey;
-}
-.recent-post-item .more {
-  display: inline-block;
-  padding: 0 0.6rem;
-  height: 1.6rem;
-  background: $light-blue;
-  color: $white;
-  text-align: center;
-  text-decoration: none;
-  line-height: 1.6rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-.recent-post-item .more:hover {
-  background: $ruby;
-}
-.recent-post-item .article-title {
-  display: block;
-  margin-bottom: 0.3rem;
-  border-bottom: 1px solid $light-grey;
-  color: $black;
-  text-decoration: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-.recent-post-item .article-title:hover {
-  border-bottom: 1px solid $light-blue;
-  color: $light-blue;
-}
-.tag-cloud {
-  padding: 4.5rem 0 7rem;
-  text-align: center;
-}
-.tag-cloud a {
-  display: inline-block;
-  margin: 0 0.4rem;
-  text-decoration: none;
-  cursor: pointer;
-}
-.tag-cloud a:hover {
-  color: $ruby !important;
-}
-.tag-cloud__title {
-  font-size: 1.8rem;
-}
-#tag,
-#category,
-#archive {
-  padding: 3rem 0 3rem;
-}
-.article-sort {
-  padding-left: 1rem;
-  border-left: 0.1rem solid $pale-blue;
-}
-.article-sort-title {
-  position: relative;
-  padding-bottom: 1.2rem;
-  padding-left: 1rem;
-  font-size: 1.2rem;
-  line-height: 1;
-}
-.article-sort-title:hover:before {
-  border-color: $ruby;
-}
-.article-sort-title:before {
-  position: absolute;
-  top: 0.25rem;
-  left: calc(-0.5rem + 1px);
-  z-index: 1;
-  width: 0.5rem;
-  height: 0.5rem;
-  border: 0.25rem solid $light-blue;
-  border-radius: 0.5rem;
-  background: $white;
-  content: "";
-  line-height: 0.5rem;
-  transition: all 0.2s ease-in-out;
-}
-.article-sort-title:after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-  width: 0.1rem;
-  height: 1.3rem;
-  background: $pale-blue;
-  content: "";
-}
-.article-sort-item {
-  position: relative;
-  margin-bottom: 1rem;
-  transition: all 0.2s ease-in-out;
-}
-.article-sort-item:hover:before {
-  border-color: $ruby;
-}
-.article-sort-item:before {
-  position: absolute;
-  top: 0.48rem;
-  left: calc(-1rem - 7px);
-  width: 0.3rem;
-  height: 0.3rem;
-  border: 0.15rem solid $light-blue;
-  border-radius: 0.3rem;
-  background: $white;
-  content: "";
-  line-height: 0.3rem;
-  transition: all 0.2s ease-in-out;
-}
-.article-sort-item.year {
-  font-size: 1rem;
-}
-.article-sort-item.year:hover:before {
-  border-color: $light-blue;
-}
-.article-sort-item.year:before {
-  top: 0.7rem;
-  border-color: $ruby;
-}
-.article-sort-item__time {
-  position: absolute;
-  top: 0.1rem;
-  color: $a-link-color;
-}
-.article-sort-item__title {
-  display: block;
-  margin-left: 5rem;
-  color: $font-black;
-  text-decoration: none;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-.category-lists {
-  padding: 3rem 0 3rem;
-}
-.category-lists .category__title {
-  text-align: center;
-  font-size: 1.8rem;
-}
-.category-list a {
-  color: $font-black;
-  text-decoration: none;
-  cursor: pointer;
-}
-.category-list .category-list-count {
-  margin-left: 0.4rem;
-  color: $a-link-color;
-}
-.category-list .category-list-count:before {
-  content: "(";
-}
-.category-list .category-list-count:after {
-  content: ")";
-}
-.gallery-item {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  margin: 0.4rem;
-  width: 6rem;
-  height: 6rem;
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-.gallery-item__title {
-  position: absolute;
-  overflow: hidden;
-  padding: 0 0.4rem;
-  width: 100%;
-  height: 1.5rem;
-  background: rgba(0,0,0,0.5);
-  color: $pale-blue;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 1.5rem;
-  transition: 0.2s ease-in-out;
-  transform: translate3d(0, 6rem, 0);
-}
-.gallery-item:hover .gallery-item__title {
-  transform: translate3d(0, 4.5rem, 0);
-}
-@media screen and (max-width: $sm) {
-  .recent-post-item .article-title {
-    font-size: 1rem;
-  }
-  .recent-post-item .article-meta.tags {
-    display: none;
-  }
-  .gallery-item {
-    width: calc(50% - 22px);
-    height: 6rem;
-  }
-  .gallery-item__title {
-    transform: translate3d(0, 6rem, 0);
-  }
-  .gallery-item:hover .gallery-item__title {
-    transform: translate3d(0, 4.5rem, 0);
-  }
-}
-@media screen and (min-width: $md) {
-  .gallery-item {
-    width: 8rem;
-    height: 8rem;
-  }
-  .gallery-item__title {
-    transform: translate3d(0, 8rem, 0);
-  }
-  .gallery-item:hover .gallery-item__title {
-    transform: translate3d(0, 6.5rem, 0);
-  }
-}
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="网站地图"><meta name="keywords" content=""><meta name="author" content="Greatiga"><meta name="copyright" content="Greatiga"><title>网站地图 | 学习笔记</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?c74f5b689637f77db7c8feff64beb26f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '5.2.0'
+} </script><meta name="generator" content="Hexo 5.2.0"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="https://static.greatiga.cn/greatiga.jpg"></div><div class="author-info__name text-center">Greatiga</div><div class="author-info__description text-center">努力向前的前端学习笔记</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">42</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">49</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">12</span></a></div></div></div><nav id="nav" style="background-image: url(https://static.greatiga.cn/web_back/home/305169.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">学习笔记</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">主页</a><a class="site-page" href="/archives">文章总览</a><a class="site-page" href="/guide">目录</a><a class="site-page" href="/tags">小标签</a><a class="site-page" href="/categories">归档</a><a class="site-page" href="/about">关于</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">学习笔记</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><article id="page"><h1>网站地图</h1><div class="article-container"><h2 id="面经"><a href="#面经" class="headerlink" title="面经"></a>面经</h2><ul>
+<li><a href="/interview/javaScriptView">JavaScript面经</a></li>
+<li><a href="/interview/htmlView">HTML面经</a></li>
+<li><a href="/interview/cssView">CSS面经</a></li>
+<li><a href="/interview/vueView">Vue面经</a></li>
+<li><a href="/interview/reactView">React面经</a></li>
+<li><a href="/interview/D3jsView">D3js</a></li>
+</ul>
+<h2 id="JavaScript基础学习笔记"><a href="#JavaScript基础学习笔记" class="headerlink" title="JavaScript基础学习笔记"></a>JavaScript基础学习笔记</h2><ul>
+<li><p>一、基本概念</p>
+<ul>
+<li><a href="/javaScript/grammarAndtype">语法和数据类型</a></li>
+<li><a href="/javaScript/operator">操作符</a></li>
+<li><a href="/javaScript/statement">语句和函数</a></li>
+</ul>
+</li>
+<li><p>二、变量、作用域和内存</p>
+<ul>
+<li><a href="/javaScript/variable">变量</a></li>
+<li><a href="/javaScript/executionContext">执行环境及作用域、垃圾回收</a></li>
+</ul>
+</li>
+<li><p>三、引用类型</p>
+<ul>
+<li><a href="/javaScript/cite-Object">Object</a></li>
+<li><a href="/javaScript/cite-Array">Array</a></li>
+<li><a href="/javaScript/cite-DateAndRegExp">Date和RegExp</a></li>
+<li><a href="/javaScript/cite-Function">Function</a></li>
+<li><a href="/javaScript/cite-BasicPackAndInlay">包装类型与内置对象</a></li>
+</ul>
+</li>
+<li><p>四、面向对象</p>
+<ul>
+<li><a href="/javaScript/understandObject">理解对象</a></li>
+<li><a href="/javaScript/createObject">创建对象</a></li>
+<li><a href="/javaScript/inheritance">继承</a></li>
+</ul>
+</li>
+<li><p>五、函数表达式</p>
+<ul>
+<li><a href="/javaScript/recursiveAndClosure">递归与闭包</a></li>
+</ul>
+</li>
+<li><p>六、通信跨域及JSON</p>
+<ul>
+<li><a href="/javaScript/json">Ajax</a></li>
+<li><a href="/javaScript/ajax">JSON</a></li>
+</ul>
+</li>
+<li><p>七、事件</p>
+<ul>
+<li><a href="/browser/domEvent">事件处理基础</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><ul>
+<li><a href="/es6/es6basic">基本的新增扩展</a></li>
+<li><a href="/es6/function">函数扩展</a></li>
+<li><a href="/es6/classES6">Class</a></li>
+</ul>
+<h2 id="深入学习JS"><a href="#深入学习JS" class="headerlink" title="深入学习JS"></a>深入学习JS</h2><ul>
+<li><a href="/deepLearningJs/eventloop">事件循环EventLoop</a></li>
+</ul>
+<h2 id="Html必备知识"><a href="#Html必备知识" class="headerlink" title="Html必备知识"></a>Html必备知识</h2><ul>
+<li><a href="/html/docAndHead">!DOCTYPE与头部元素</a></li>
+<li><a href="/html/semLabel">语义化标签</a></li>
+</ul>
+<h2 id="Css必备知识"><a href="#Css必备知识" class="headerlink" title="Css必备知识"></a>Css必备知识</h2><ul>
+<li><a href="/css/cssMustKnow">css必备知识点</a></li>
+<li><a href="/css/cssLayout">文档流与布局基础</a></li>
+</ul>
+<h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><ul>
+<li><a href="/browser/bomCore">BOM</a></li>
+<li><a href="/browser/domBasis">DOM</a></li>
+</ul>
+<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><ul>
+<li><a href="/computerNetwork/networkBasic">网络基础</a></li>
+<li><a href="/computerNetwork/httpBasic">HTTP与HTTPS</a></li>
+</ul>
+<h2 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h2><ul>
+<li><a href="/dataStruct/chainTable">线性表</a></li>
+<li><a href="/dataStruct/tree">树与二叉树</a></li>
+<li><a href="/dataStruct/sortAlgor">排序算法</a></li>
+</ul>
+<h2 id="框架级思考与进阶"><a href="#框架级思考与进阶" class="headerlink" title="框架级思考与进阶"></a>框架级思考与进阶</h2><ul>
+<li><a href="/Frame-level-thinking/PubSub">Vue中的发布订阅</a></li>
+</ul>
+</div></article><nav id="pagination"><div class="pagination"></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://static.greatiga.cn/web_back/home/305169.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2020 - 2022 By Greatiga</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
