@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="css面经"><meta name="keywords" content="CSS面经"><meta name="author" content="Greatiga"><meta name="copyright" content="Greatiga"><title>css面经 | Hexo</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '7.2.0'
+} </script><meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">层叠样式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#position-%E5%92%8C-z-index-%E7%9A%84%E5%B8%83%E5%B1%80%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">3.</span> <span class="toc-text">position 和 z-index 的布局优先级</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E5%B8%83%E5%B1%80%E5%92%8C%E5%85%B6%E4%BB%96%E5%B8%83%E5%B1%80"><span class="toc-number">4.</span> <span class="toc-text">浮动布局和其他布局</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BFC"><span class="toc-number">5.</span> <span class="toc-text">BFC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91"><span class="toc-number">5.1.</span> <span class="toc-text">触发</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#flex"><span class="toc-number">6.</span> <span class="toc-text">flex</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">6.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%B6%E5%85%83%E7%B4%A0%E5%B1%9E%E6%80%A7"><span class="toc-number">6.2.</span> <span class="toc-text">父元素属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-direction"><span class="toc-number">6.2.1.</span> <span class="toc-text">flex-direction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-warp"><span class="toc-number">6.2.2.</span> <span class="toc-text">flex-warp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-flow"><span class="toc-number">6.2.3.</span> <span class="toc-text">flex-flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#justify-content"><span class="toc-number">6.2.4.</span> <span class="toc-text">justify-content</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-item"><span class="toc-number">6.2.5.</span> <span class="toc-text">align-item</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0"><span class="toc-number">6.3.</span> <span class="toc-text">子元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#order"><span class="toc-number">6.3.1.</span> <span class="toc-text">order</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-grow"><span class="toc-number">6.3.2.</span> <span class="toc-text">flex-grow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-shark"><span class="toc-number">6.3.3.</span> <span class="toc-text">flex-shark</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-1"><span class="toc-number">6.3.4.</span> <span class="toc-text">flex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-self"><span class="toc-number">6.3.5.</span> <span class="toc-text">align-self</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">7.</span> <span class="toc-text">盒模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="toc-number">7.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E6%88%90"><span class="toc-number">7.2.</span> <span class="toc-text">组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">7.3.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#W3C-%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">7.3.1.</span> <span class="toc-text">W3C 盒模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IE-%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">7.3.2.</span> <span class="toc-text">IE 盒模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#margin-%E5%A1%8C%E9%99%B7%EF%BC%88%E9%87%8D%E5%8F%A0%EF%BC%89"><span class="toc-number">7.4.</span> <span class="toc-text">margin 塌陷（重叠）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="toc-number">7.4.1.</span> <span class="toc-text">解决方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E6%96%B9%E9%9D%A2animation%E5%92%8Ctransition%E3%80%81%E8%BF%87%E6%B8%A1"><span class="toc-number">8.</span> <span class="toc-text">动画方面animation和transition、过渡</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E6%B0%B4%E5%B9%B3%E3%80%81%E5%9E%82%E7%9B%B4%E3%80%81%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-number">9.</span> <span class="toc-text">各种水平、垂直、水平垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD"><span class="toc-number">9.1.</span> <span class="toc-text">水平居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%97%E7%8A%B6%E5%85%83%E7%B4%A0"><span class="toc-number">9.1.1.</span> <span class="toc-text">块状元素</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">10.</span> <span class="toc-text">响应式布局实现方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%AA%E5%85%83%E7%B4%A0%E5%92%8C%E4%BC%AA%E7%B1%BB%E5%85%83%E7%B4%A0"><span class="toc-number">11.</span> <span class="toc-text">伪元素和伪类元素</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Greatiga</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">39</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">45</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">11</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://z3.ax1x.com/2021/04/17/c5854J.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Hexo</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">主页</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/about">关于</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">css面经</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-08-31</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/">前端面经</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>根据每个问题遇到的次数来进行排名</p>
+</blockquote>
+<h1 id="层叠样式"><a href="#层叠样式" class="headerlink" title="层叠样式"></a>层叠样式</h1><span id="more"></span>
+
+<h1 id="position-和-z-index-的布局优先级"><a href="#position-和-z-index-的布局优先级" class="headerlink" title="position 和 z-index 的布局优先级"></a>position 和 z-index 的布局优先级</h1><h1 id="浮动布局和其他布局"><a href="#浮动布局和其他布局" class="headerlink" title="浮动布局和其他布局"></a>浮动布局和其他布局</h1><blockquote>
+<p><a href="/css/cssLayout">看这里的文章</a></p>
+</blockquote>
+<h1 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h1><blockquote>
+<p>为了解决各中浮动以及 margin 导致的边距塌陷、合并问题</p>
+</blockquote>
+<h2 id="触发"><a href="#触发" class="headerlink" title="触发"></a>触发</h2><blockquote>
+<p>使其渲染规则发生改变</p>
+</blockquote>
+<ul>
+<li>overflow: hidden;</li>
+<li>float: left&#x2F;right;</li>
+<li>display: inline-block;</li>
+</ul>
+<h1 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>行内元素 display: inline-flex;</p>
+</blockquote>
+<blockquote>
+<p>块状元素 display: flex;</p>
+</blockquote>
+<blockquote>
+<p>设置 flex 之后，float 、clear、vertical-align 将会失效</p>
+</blockquote>
+<h2 id="父元素属性"><a href="#父元素属性" class="headerlink" title="父元素属性"></a>父元素属性</h2><h3 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h3><ul>
+<li>row(水平排列，从左至右)默认</li>
+<li>row-reverse(水平排列，从右至左)</li>
+<li>column(垂直排列，从上至下)</li>
+<li>column-reverse(垂直排列，从下至上)</li>
+</ul>
+<h3 id="flex-warp"><a href="#flex-warp" class="headerlink" title="flex-warp"></a>flex-warp</h3><ul>
+<li>nowarp 默认不换行</li>
+<li>warp 换行，第一行在上面</li>
+<li>warp-reverse 换行，第一行在下面</li>
+</ul>
+<h3 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h3><ul>
+<li>上述两种情况的合并</li>
+<li>默认 flex-flow: row nowarp;</li>
+</ul>
+<h3 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h3><blockquote>
+<p>水平方向的对齐方式</p>
+</blockquote>
+<ul>
+<li>flex-start: 左对齐</li>
+<li>flex-end: 右对齐</li>
+<li>center: 居中</li>
+<li>space-between: 两边对齐，中间等间隔</li>
+<li>space-around: 所有元素间隔相等</li>
+</ul>
+<h3 id="align-item"><a href="#align-item" class="headerlink" title="align-item"></a>align-item</h3><blockquote>
+<p>垂直方向对齐方式</p>
+</blockquote>
+<ul>
+<li>flex-start: 向上对齐</li>
+<li>flex-end: 向下对齐</li>
+<li>center: 居中对齐</li>
+<li>baseline: 根据文字底部对齐</li>
+<li>stretch: 铺满</li>
+</ul>
+<h2 id="子元素"><a href="#子元素" class="headerlink" title="子元素"></a>子元素</h2><h3 id="order"><a href="#order" class="headerlink" title="order"></a>order</h3><blockquote>
+<p>排列顺序，越小排列月靠前</p>
+</blockquote>
+<h3 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h3><blockquote>
+<p>放大倍数</p>
+</blockquote>
+<h3 id="flex-shark"><a href="#flex-shark" class="headerlink" title="flex-shark"></a>flex-shark</h3><blockquote>
+<p>缩小倍数，项目空间不足，自动缩小</p>
+</blockquote>
+<h3 id="flex-1"><a href="#flex-1" class="headerlink" title="flex"></a>flex</h3><blockquote>
+<p>上面两种属性的缩写 flex: 0 0 auto;</p>
+</blockquote>
+<h3 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h3><blockquote>
+<p>某一个元素可以自定义对齐方式，值和垂直方向对齐方式的值一样</p>
+</blockquote>
+<h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>HTML 中的每一个元素都可以看成是一个盒子，可以通过多个属性来描述盒子的形状大小，从而可以非常灵活的改变样式</p>
+</blockquote>
+<!-- more -->
+
+<h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><blockquote>
+<p>由四个主要属性组成</p>
+</blockquote>
+<ul>
+<li>content 内容</li>
+<li>padding 内边距</li>
+<li>border 边框</li>
+<li>margin 外边距</li>
+</ul>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="W3C-盒模型"><a href="#W3C-盒模型" class="headerlink" title="W3C 盒模型"></a>W3C 盒模型</h3><blockquote>
+<p>W3C 盒模型规定代码中设定 width 为 content 部分大小，height 同理</p>
+</blockquote>
+<p>所以该盒模型实际占据的页面空间大小为 margin + border + padding + width(content)</p>
+<blockquote>
+<p>该模型的大小可以随着 content 的大小变化而变化</p>
+</blockquote>
+<h3 id="IE-盒模型"><a href="#IE-盒模型" class="headerlink" title="IE 盒模型"></a>IE 盒模型</h3><blockquote>
+<p>IE 盒模型规定代码中设定 width 为 content + border + padding 部分大小，height 同理</p>
+</blockquote>
+<p>所以该盒模型实际占据的页面空间大小为 margin + 代码中设置的值 width(border + padding + content)</p>
+<blockquote>
+<p>该模型下，一旦父盒子确定，那么子盒子是无法将其撑开的</p>
+</blockquote>
+<ul>
+<li>由此看来，在设置相同的 width 值时，W3C 盒模型明显要比 IE 盒模型大许多</li>
+</ul>
+<h2 id="margin-塌陷（重叠）"><a href="#margin-塌陷（重叠）" class="headerlink" title="margin 塌陷（重叠）"></a>margin 塌陷（重叠）</h2><blockquote>
+<p>当垂直方向上的两个元素合并时，上面一个元素的 margin-bottom 和下面一个元素的 margin-top 不会叠加，而是取最大的那一个作为两个元素之间的距离</p>
+</blockquote>
+<h3 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h3><blockquote>
+<p>可以在上下两个元素或者任意一个元素外层套上一个 div，并设置 overflow: hidden;</p>
+</blockquote>
+<blockquote>
+<p>可以只设置上面元素的 margin-bottom 值，大小为原定边距的两倍</p>
+</blockquote>
+<h1 id="动画方面animation和transition、过渡"><a href="#动画方面animation和transition、过渡" class="headerlink" title="动画方面animation和transition、过渡"></a>动画方面animation和transition、过渡</h1><h1 id="各种水平、垂直、水平垂直居中"><a href="#各种水平、垂直、水平垂直居中" class="headerlink" title="各种水平、垂直、水平垂直居中"></a>各种水平、垂直、水平垂直居中</h1><h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><h3 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h3><ul>
+<li>margin: 0 auto; 上下间距为零，左右自适应</li>
+</ul>
+<h1 id="响应式布局实现方式"><a href="#响应式布局实现方式" class="headerlink" title="响应式布局实现方式"></a>响应式布局实现方式</h1><h1 id="伪元素和伪类元素"><a href="#伪元素和伪类元素" class="headerlink" title="伪元素和伪类元素"></a>伪元素和伪类元素</h1></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Greatiga</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2020/08/31/interview/cssView/">http://example.com/2020/08/31/interview/cssView/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CSS%E9%9D%A2%E7%BB%8F/">CSS面经</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/08/31/interview/htmlView/"><i class="fa fa-chevron-left">  </i><span>html面经</span></a></div><div class="next-post pull-right"><a href="/2020/07/27/javaScript/recursiveAndClosure/"><span>递归与闭包</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://z3.ax1x.com/2021/04/17/c5854J.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2024 By Greatiga</div><div class="framework-info"><span>Driven - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/lib/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.1"></script><script src="/js/fancybox.js?version=1.9.1"></script><script src="/js/sidebar.js?version=1.9.1"></script><script src="/js/copy.js?version=1.9.1"></script><script src="/js/fireworks.js?version=1.9.1"></script><script src="/js/transition.js?version=1.9.1"></script><script src="/js/scroll.js?version=1.9.1"></script><script src="/js/head.js?version=1.9.1"></script><script id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zIndex="-1" data-click="false"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
