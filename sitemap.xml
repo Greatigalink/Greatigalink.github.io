@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://greatiga.cn/2024/04/22/%E7%94%9F%E6%B4%BB%E6%84%9F%E8%A8%80/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/</loc>
+    
+    <lastmod>2024-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://greatiga.cn/friends/index.html</loc>
     
     <lastmod>2024-04-22</lastmod>
@@ -163,20 +172,6 @@
   </url>
   
   <url>
-    <loc>https://greatiga.cn/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/</loc>
-    <lastmod>2024-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://greatiga.cn/tags/Blender/</loc>
-    <lastmod>2024-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://greatiga.cn/tags/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2024-04-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -185,6 +180,20 @@
   
   <url>
     <loc>https://greatiga.cn/tags/%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2024-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://greatiga.cn/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/</loc>
+    <lastmod>2024-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://greatiga.cn/tags/Blender/</loc>
     <lastmod>2024-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -206,6 +215,27 @@
   
   <url>
     <loc>https://greatiga.cn/tags/window%E5%AF%B9%E8%B1%A1/</loc>
+    <lastmod>2024-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://greatiga.cn/tags/Hexo/</loc>
+    <lastmod>2024-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://greatiga.cn/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2024-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://greatiga.cn/tags/%E5%BB%BA%E7%AB%99/</loc>
     <lastmod>2024-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -250,6 +280,13 @@
   
   <url>
     <loc>https://greatiga.cn/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/BOM/</loc>
+    <lastmod>2024-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://greatiga.cn/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E8%A8%80/</loc>
     <lastmod>2024-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
